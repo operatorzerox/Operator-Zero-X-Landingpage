@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1c1c1e"/>
+      <stop offset="100%" stop-color="#0d0d0d"/>
+    </radialGradient>
+    <radialGradient id="helmetGrad" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#2a2e2e"/>
+      <stop offset="40%" stop-color="#1a1d1d"/>
+      <stop offset="100%" stop-color="#0e1010"/>
+    </radialGradient>
+    <radialGradient id="helmetTopGrad" cx="45%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#222828"/>
+      <stop offset="100%" stop-color="#101414"/>
+    </radialGradient>
+    <radialGradient id="visorGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00ffee"/>
+      <stop offset="40%" stop-color="#00E5CC"/>
+      <stop offset="100%" stop-color="#00a899"/>
+    </radialGradient>
+    <filter id="visorBloom" x="-60%" y="-200%" width="220%" height="600%">
+      <feGaussianBlur stdDeviation="8" result="blur1"/>
+      <feGaussianBlur stdDeviation="16" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softShadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+    <clipPath id="helmetClip">
+      <ellipse cx="256" cy="210" rx="130" ry="155"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background - dark charcoal like original -->
+  <rect width="512" height="512" fill="url(#bgGrad)"/>
+
+  <!-- Shoulder base - wide, low -->
+  <ellipse cx="256" cy="465" rx="200" ry="60" fill="#111515"/>
+  <!-- Shoulder left slope -->
+  <path d="M56 465 Q100 400 180 380 L200 440 Q130 445 80 480Z" fill="#111515"/>
+  <!-- Shoulder right slope -->
+  <path d="M456 465 Q412 400 332 380 L312 440 Q382 445 432 480Z" fill="#111515"/>
+
+  <!-- Circuit lines on chest -->
+  <g stroke="#1e2424" stroke-width="1.5" fill="none" opacity="0.8">
+    <line x1="200" y1="420" x2="200" y2="455"/>
+    <line x1="200" y1="437" x2="230" y2="437"/>
+    <line x1="230" y1="425" x2="230" y2="455"/>
+    <line x1="312" y1="420" x2="312" y2="455"/>
+    <line x1="282" y1="437" x2="312" y2="437"/>
+    <line x1="282" y1="425" x2="282" y2="455"/>
+    <line x1="240" y1="410" x2="240" y2="430"/>
+    <line x1="272" y1="410" x2="272" y2="430"/>
+    <line x1="240" y1="420" x2="272" y2="420"/>
+  </g>
+
+  <!-- Neck -->
+  <path d="M222 345 Q222 390 230 405 L282 405 Q290 390 290 345Z" fill="#131717"/>
+  <!-- Neck detail line -->
+  <line x1="256" y1="348" x2="256" y2="400" stroke="#1a2020" stroke-width="1.5"/>
+
+  <!-- Chest center piece -->
+  <path d="M230 400 L282 400 L290 430 L222 430Z" fill="#131717"/>
+
+  <!-- Helmet main shape - smooth oval -->
+  <ellipse cx="256" cy="210" rx="130" ry="155" fill="url(#helmetGrad)" filter="url(#softShadow)"/>
+
+  <!-- Helmet top darker panel -->
+  <ellipse cx="254" cy="145" rx="82" ry="90" fill="url(#helmetTopGrad)" clip-path="url(#helmetClip)"/>
+
+  <!-- Helmet surface highlight (subtle) -->
+  <ellipse cx="224" cy="155" rx="38" ry="28" fill="#ffffff" opacity="0.025"/>
+
+  <!-- Small symbol on forehead (like the M/diamond in original) -->
+  <path d="M248 178 L256 168 L264 178 L256 185Z" fill="#1a1a1a" opacity="0.7"/>
+  <path d="M251 178 L256 172 L261 178 L256 183Z" fill="#222" opacity="0.5"/>
+
+  <!-- Side detail marks (like the notches in original) -->
+  <rect x="136" y="218" width="8" height="4" rx="1" fill="#0a0a0a" opacity="0.8"/>
+  <rect x="368" y="218" width="8" height="4" rx="1" fill="#0a0a0a" opacity="0.8"/>
+
+  <!-- Visor recess/shadow -->
+  <path d="M158 248 Q256 238 354 248 Q354 272 256 278 Q158 272 158 248Z" fill="#050808"/>
+
+  <!-- Visor bloom glow behind -->
+  <path d="M163 252 Q256 243 349 252 Q349 268 256 273 Q163 268 163 252Z"
+        fill="#00E5CC" opacity="0.25" filter="url(#visorBloom)"/>
+
+  <!-- Visor main - curved like original, slightly banana-shaped -->
+  <path d="M168 252 Q256 244 344 252 Q344 266 256 270 Q168 266 168 252Z"
+        fill="url(#visorGrad)" filter="url(#visorBloom)"/>
+
+  <!-- Visor bright core center -->
+  <path d="M210 252 Q256 247 302 252 Q302 263 256 265 Q210 263 210 252Z"
+        fill="#00ffee" opacity="0.55"/>
+
+  <!-- Visor specular hotspot -->
+  <ellipse cx="248" cy="255" rx="32" ry="5" fill="#ffffff" opacity="0.2"/>
+
+  <!-- Helmet rim/edge subtle highlight -->
+  <ellipse cx="256" cy="210" rx="130" ry="155" fill="none" stroke="#2a3030" stroke-width="1.5"/>
+
+</svg>
