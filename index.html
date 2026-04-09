@@ -147,7 +147,7 @@ h2 .accent{color:var(--cyan)}
 .problem-col.bad .problem-list li::before{content:"✗";color:var(--g3)}
 .problem-col.good .problem-list li::before{content:"→";color:var(--cyan)}
 .deliverable-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:2px;background:var(--g4)}
-.deliverable-card{background:var(--black);padding:28px 24px;border:1px solid transparent;transition:border-color .2s,background .2s;cursor:crosshair}
+.deliverable-card{background:var(--black);padding:28px 24px;border:1px solid transparent;transition:border-color .2s,background .2s;cursor:crosshair;border-radius:8px;overflow:hidden}
 .deliverable-card:hover{border-color:var(--cyan-border);background:var(--cyan-muted)}
 .card-num{font-size:44px;font-family:Impact,"Arial Narrow",sans-serif;color:var(--g4);line-height:1;margin-bottom:10px;transition:color .2s}
 .deliverable-card:hover .card-num{color:var(--cyan)}
@@ -305,13 +305,13 @@ footer .copy{font-size:11px;color:var(--g3)}
 .ops-subtitle{display:block;font-size:11px;letter-spacing:.22em;color:rgba(0,229,204,0.38);text-transform:uppercase;margin-bottom:52px}
 .holo-viewport{perspective:1400px;perspective-origin:50% 35%;width:100%;position:relative;min-height:540px;overflow:visible}
 .holo-stage{position:absolute;inset:0;transition:transform .12s ease-out}
-.panel-slot{position:absolute;width:138px}
+.panel-slot{position:absolute;width:138px;border-radius:8px}
 .holo-panel{
   width:138px;position:relative;
   background:rgba(0,8,6,0.8);
   border:1px solid var(--cyan-border);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  overflow:hidden;cursor:crosshair;
+  overflow:hidden;cursor:crosshair;border-radius:8px;
   transition:border-color .3s,box-shadow .3s;
   animation:holoFloat var(--hf-dur,6s) ease-in-out infinite var(--hf-del,0s);
 }
@@ -370,28 +370,84 @@ footer .copy{font-size:11px;color:var(--g3)}
   .holo-panel{width:100%;max-width:340px;animation:none;transform:none!important}
   .holo-beam{display:none}
 }
-.oz-modal-overlay{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s ease;backdrop-filter:blur(6px);padding:20px}
+.oz-modal-overlay{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.88);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease;backdrop-filter:blur(8px);perspective:1000px;padding:20px}
 .oz-modal-overlay.active{opacity:1;pointer-events:all}
-.oz-modal{background:#000;border:1px solid rgba(0,229,204,0.35);max-width:560px;width:100%;position:relative;transform:translateY(20px);transition:transform .25s ease;max-height:90vh;overflow-y:auto}
-.oz-modal-overlay.active .oz-modal{transform:translateY(0)}
-.oz-modal-header{background:#0a0a0a;border-bottom:1px solid rgba(0,229,204,0.15);padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
+.oz-modal{background:linear-gradient(160deg,#0a0f0e 0%,#000 60%,#050d0c 100%);border:1px solid rgba(0,229,204,0.4);border-radius:10px;max-width:680px;width:100%;position:relative;transform:rotateX(25deg) rotateY(-8deg) translateY(40px) scale(0.88);transform-style:preserve-3d;transition:transform .5s cubic-bezier(0.16,1,0.3,1),box-shadow .5s ease;max-height:90vh;overflow-y:auto;box-shadow:0 0 0 1px rgba(0,229,204,0.1),0 20px 60px rgba(0,0,0,0.9),0 0 80px rgba(0,229,204,0.08),inset 0 1px 0 rgba(0,229,204,0.12);animation:none}
+.oz-modal-overlay.active .oz-modal{transform:rotateX(0deg) rotateY(0deg) translateY(0) scale(1);box-shadow:0 0 0 1px rgba(0,229,204,0.2),0 40px 120px rgba(0,0,0,0.95),0 0 120px rgba(0,229,204,0.12),0 0 240px rgba(0,229,204,0.05),inset 0 1px 0 rgba(0,229,204,0.15);animation:modalFloat 5s ease-in-out infinite}
+.oz-modal-header{background:#0a0a0a;border-bottom:1px solid rgba(0,229,204,0.15);padding:24px 32px;display:flex;align-items:center;justify-content:space-between;border-radius:8px 8px 0 0}
 .oz-modal-id{font-size:10px;letter-spacing:.25em;color:rgba(0,229,204,0.45)}
 .oz-modal-close{background:none;border:1px solid rgba(0,229,204,0.2);color:rgba(0,229,204,0.6);font-size:16px;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-family:monospace}
 .oz-modal-close:hover{border-color:#00E5CC;color:#00E5CC}
-.oz-modal-body{padding:28px 24px}
-.oz-modal-name{font-family:Impact,"Arial Narrow",sans-serif;font-size:32px;text-transform:uppercase;letter-spacing:.06em;color:#fff;line-height:1;margin-bottom:6px}
-.oz-modal-price{font-family:Impact,"Arial Narrow",sans-serif;font-size:48px;color:#00E5CC;line-height:1;margin-bottom:4px}
+.oz-modal-body{padding:36px 32px}
+.oz-modal-name{font-family:Impact,"Arial Narrow",sans-serif;font-size:48px;text-transform:uppercase;letter-spacing:.06em;color:#fff;line-height:1;margin-bottom:6px}
+.oz-modal-price{font-family:Impact,"Arial Narrow",sans-serif;font-size:72px;color:#00E5CC;line-height:1;margin-bottom:4px}
 .oz-modal-price-note{font-size:10px;letter-spacing:.2em;color:rgba(0,229,204,0.4);margin-bottom:20px}
 .oz-modal-divider{width:40px;height:1px;background:rgba(0,229,204,0.3);margin-bottom:20px}
-.oz-modal-desc{font-size:13px;color:#999;line-height:1.85;margin-bottom:24px;letter-spacing:.03em}
+.oz-modal-desc{font-size:15px;color:#bbb;line-height:1.85;margin-bottom:24px;letter-spacing:.03em}
 .oz-modal-features{list-style:none;margin-bottom:28px}
-.oz-modal-features li{font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,0.55);padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:10px}
+.oz-modal-features li{font-size:14px;letter-spacing:.06em;color:rgba(255,255,255,0.75);padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:10px}
 .oz-modal-features li::before{content:"→";color:#00E5CC;opacity:.7;flex-shrink:0}
-.oz-modal-cta{display:block;width:100%;background:#00E5CC;color:#000;font-family:Impact,"Arial Narrow",sans-serif;font-size:18px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:16px;text-align:center;border:none;cursor:pointer;transition:opacity .15s}
+.oz-modal-cta{display:block;width:100%;background:#00E5CC;color:#000;font-family:Impact,"Arial Narrow",sans-serif;font-size:22px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:20px;text-align:center;border:none;cursor:pointer;transition:opacity .15s}
 .oz-modal-cta:hover{opacity:.85}
 .oz-modal-cta.soon{background:transparent;border:1px solid rgba(0,229,204,0.3);color:#00E5CC;font-size:14px}
 .oz-modal-cta.soon:hover{border-color:#00E5CC;background:rgba(0,229,204,0.05)}
 .oz-modal-note{font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,0.18);text-align:center;margin-top:12px}
+/* === EFFEKT 1: Ghost Display Depth-of-Field === */
+.panel-slot:nth-child(1){filter:blur(0px);opacity:1.00}
+.panel-slot:nth-child(2){filter:blur(0.3px);opacity:0.95}
+.panel-slot:nth-child(3){filter:blur(0.6px);opacity:0.88}
+.panel-slot:nth-child(4){filter:blur(1.0px);opacity:0.80}
+.panel-slot:nth-child(5){filter:blur(1.0px);opacity:0.80}
+.panel-slot:nth-child(6){filter:blur(0.6px);opacity:0.88}
+.panel-slot:nth-child(7){filter:blur(0.3px);opacity:0.95}
+.panel-slot:nth-child(8){filter:blur(0px);opacity:1.00}
+.panel-slot:hover{filter:blur(0px)!important;opacity:1!important;transition:filter .35s ease,opacity .35s ease;z-index:100}
+.holo-panel{box-shadow:0 0 12px rgba(0,229,204,0.08),0 0 40px rgba(0,229,204,0.04),inset 0 1px 0 rgba(0,229,204,0.12)}
+.panel-slot:hover .holo-panel{box-shadow:0 0 20px rgba(0,229,204,0.25),0 0 60px rgba(0,229,204,0.10),inset 0 1px 0 rgba(0,229,204,0.30);transition:box-shadow .35s ease}
+/* === EFFEKT 2: Holographic Shader wrapper === */
+.cin-operator-wrapper{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);height:96vh;width:auto;z-index:4;display:inline-block;animation:cinFloat 5s ease-in-out infinite}
+.cin-operator-wrapper .cin-operator{position:static;bottom:auto;left:auto;transform:none;z-index:auto;animation:none;height:100%}
+.cin-operator-wrapper::before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(var(--holo-angle,135deg),transparent 25%,rgba(0,229,204,0.12) 45%,rgba(0,229,204,0.20) 50%,rgba(180,255,248,0.08) 55%,transparent 75%);mix-blend-mode:screen;opacity:0;transition:opacity .4s ease;z-index:2}
+.cin-operator-wrapper::after{content:'';position:absolute;inset:0;pointer-events:none;background:conic-gradient(from var(--holo-conic,0deg) at var(--mouse-x,50%) var(--mouse-y,50%),transparent 0deg,rgba(0,229,204,0.06) 60deg,transparent 120deg);mix-blend-mode:color-dodge;opacity:0;transition:opacity .4s ease;z-index:3}
+.cin-operator-wrapper:hover::before,.cin-operator-wrapper:hover::after{opacity:1}
+/* === EFFEKT 3: Kinetic Typography === */
+.cin-title .letter{display:inline-block;transition:transform .5s cubic-bezier(0.23,1,0.32,1),opacity .5s cubic-bezier(0.23,1,0.32,1),filter .5s cubic-bezier(0.23,1,0.32,1);will-change:transform,opacity,filter}
+.cin-title .letter.space{display:inline-block;width:.3em}
+.cin-title.dissolving .letter{opacity:0;filter:blur(8px);transform:translate(var(--tx,0px),var(--ty,-40px)) scale(0.8)}
+.cin-title.reassembling .letter{opacity:1;filter:blur(0px);transform:translate(0,0) scale(1)}
+@keyframes modalFloat{0%,100%{transform:rotateX(0deg) rotateY(0deg) translateY(0) scale(1);box-shadow:0 0 0 1px rgba(0,229,204,0.2),0 40px 120px rgba(0,0,0,0.95),0 0 120px rgba(0,229,204,0.12),inset 0 1px 0 rgba(0,229,204,0.15)}25%{transform:rotateX(1deg) rotateY(-1.5deg) translateY(-8px) scale(1);box-shadow:0 0 0 1px rgba(0,229,204,0.25),0 50px 140px rgba(0,0,0,0.98),0 0 150px rgba(0,229,204,0.16),inset 0 1px 0 rgba(0,229,204,0.2)}50%{transform:rotateX(-0.5deg) rotateY(1deg) translateY(-12px) scale(1);box-shadow:0 0 0 1px rgba(0,229,204,0.3),0 60px 160px rgba(0,0,0,1),0 0 180px rgba(0,229,204,0.2),inset 0 1px 0 rgba(0,229,204,0.25)}75%{transform:rotateX(1.5deg) rotateY(-0.5deg) translateY(-6px) scale(1);box-shadow:0 0 0 1px rgba(0,229,204,0.22),0 45px 130px rgba(0,0,0,0.97),0 0 140px rgba(0,229,204,0.14),inset 0 1px 0 rgba(0,229,204,0.18)}}
+.deliverables-grid{display:grid;grid-template-columns:repeat(4,185px);grid-template-rows:repeat(2,225px);gap:20px;justify-content:center;padding:30px 0}
+.del-card{width:185px;height:225px;padding:22px 18px;border:1px solid rgba(0,229,204,0.18);background:rgba(0,8,6,0.85);border-radius:8px;cursor:pointer;box-sizing:border-box;overflow:hidden;backdrop-filter:blur(12px);box-shadow:0 0 14px rgba(0,229,204,0.06),inset 0 1px 0 rgba(0,229,204,0.1);transition:border-color .35s,box-shadow .35s;animation:holoFloat var(--hf-duration,4s) ease-in-out infinite;animation-delay:var(--hf-delay,0s);position:relative}
+.del-card:hover{border-color:rgba(0,229,204,0.45);box-shadow:0 0 28px rgba(0,229,204,0.14),inset 0 1px 0 rgba(0,229,204,0.22)}
+.del-card:hover .del-title{color:var(--cyan);transition:color .3s}
+.del-num{font-family:'Share Tech Mono',monospace;font-size:22px;color:rgba(0,229,204,0.3);display:block;margin-bottom:10px;line-height:1}
+.del-title{font-family:Impact,sans-serif;font-size:13px;color:#fff;letter-spacing:.05em;margin-bottom:10px;line-height:1.2;text-transform:uppercase}
+.del-text{font-family:'Share Tech Mono',monospace;font-size:10px;color:#555;line-height:1.6}
+.oz-waitlist-btn{display:block;width:100%;padding:10px 16px;background:transparent;border:1px solid var(--cyan-border);color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.1em;cursor:pointer;transition:all .3s;margin-top:12px}
+.oz-waitlist-btn:hover{background:rgba(0,229,204,0.08);border-color:var(--cyan)}
+.oz-waitlist-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center}
+.oz-waitlist-overlay.active{display:flex}
+.oz-waitlist-box{background:#000;border:1px solid var(--cyan-border);padding:48px 40px;max-width:480px;width:90%;position:relative}
+.oz-waitlist-box h3{font-family:Impact,sans-serif;font-size:22px;color:var(--white);margin-bottom:8px;letter-spacing:.05em}
+.oz-waitlist-box p{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--g2);margin-bottom:28px}
+.oz-waitlist-module{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--cyan);margin-bottom:24px;display:block}
+.oz-waitlist-input{width:100%;padding:14px 16px;background:rgba(0,229,204,0.04);border:1px solid var(--cyan-border);color:var(--white);font-family:'Share Tech Mono',monospace;font-size:13px;outline:none;margin-bottom:12px;box-sizing:border-box}
+.oz-waitlist-input:focus{border-color:var(--cyan)}
+.oz-waitlist-submit{width:100%;padding:14px;background:var(--cyan);border:none;color:#000;font-family:Impact,sans-serif;font-size:14px;letter-spacing:.1em;cursor:pointer;transition:opacity .3s}
+.oz-waitlist-submit:hover{opacity:.85}
+.oz-waitlist-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--g2);font-size:20px;cursor:pointer;font-family:monospace}
+.oz-waitlist-success{display:none;text-align:center;padding:20px 0}
+.oz-waitlist-success p{color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:13px}
+.hero-cta-stack{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;margin-top:32px;width:100%;position:relative;z-index:10;pointer-events:auto}
+.oz-primary-sample{display:inline-block;padding:16px 36px;background:var(--cyan);border:none;color:#000;font-family:Impact,sans-serif;font-size:15px;letter-spacing:.12em;cursor:pointer;transition:opacity .3s;min-width:260px}
+.oz-primary-sample:hover{opacity:.88}
+.oz-cta-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:#555;letter-spacing:.08em;margin:8px 0 20px 2px}
+.oz-secondary-buy{display:inline-block;padding:11px 28px;background:transparent;border:1px solid rgba(0,229,204,0.35);color:rgba(0,229,204,0.7);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.12em;text-decoration:none;cursor:pointer;transition:all .3s;min-width:260px;text-align:center}
+.oz-secondary-buy:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,204,0.04)}
+.oz-sample-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 20px;box-sizing:border-box}
+.oz-sample-overlay.active{display:flex}
+.oz-sample-box{background:#050505;border:1px solid rgba(0,229,204,0.2);max-width:860px;width:100%;position:relative;padding:40px;box-sizing:border-box}
+.oz-sample-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--g2);font-size:20px;cursor:pointer;font-family:monospace}
 </style>
 </head>
 <body>
@@ -408,7 +464,9 @@ footer .copy{font-size:11px;color:var(--g3)}
   <div class="cin-visor-a"></div>
   <div class="cin-visor-h"></div>
   <div class="cin-visor-c"></div>
+  <div class="cin-operator-wrapper">
   <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAH0AfQDASIAAhEBAxEB/8QAHQABAAEFAQEBAAAAAAAAAAAAAAUBAgMEBgcICf/EAEwQAAEEAQIDBQUFBAYHBgcBAAEAAgMRBAUhEjFBBhNRYXEHIoGRoRQyscHwFSNC0QgzUmLh8SRDU3KCwtIWFzRUk6IlVWNzkqOys//EABsBAQEBAQEBAQEAAAAAAAAAAAABAgMEBQYH/8QALBEBAQACAQQBAwMDBQEAAAAAAAECEQMEEiExBRNBUQZhcRUiMhQWUoGRsf/aAAwDAQACEQMRAD8A+MkREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEReq+yH2G9ru38sWUYXaVpDtzlzs954/uM2J9dh6qybS5TGbryoAk0Oa6Xs/2C7Z6+5rdJ7M6nkh3J/cFrD/xOofVffvse9hvs+7H49w4DMvUIwBJlTHjkN+fTkdm0F6rCzRdOFY+PBGW+DRfzW/p/lwvPPs/OnQ/6Nnta1Sj+wIsNp6z5Df8Ak4l2Omf0O/aJkNvM1TSMXyaXv/EBfcsvaHDj2Dm7ea1Ju1mOw0C35q/T/Zj6/wC75Ax/6FXadwHfdrsGPx4cQu/51nf/AEJteDfd7a4pd56eQP8A/RfWLu2MV0C0KwdsY75tV+nfwfX/AH/+PkHM/oXds4wTjdptMmPQOhcy/qVzOrf0S/arhMc+BmlZgHIRTuBPzbX1X3TH2vgJ3LStqHtRiP5lp9FPp38L9f8Ad+amu+w/2p6Mx8mZ2RzHMZzML2Sk+jWuLj8lwepabqOmzdzqOBlYcv8AYnicw/Ihfri3WNPyG0/gcD0IBUZrfZjsp2hwpcXUNNxJ4ZWkPY9gIcDzsclOxZzvyXRfXntm/ou4WS6fVfZ9M3GkFk4Ejrief7ribb9Ry5BfKvaPQdY7OapJpmt6fPg5cZ3jlbV+YPIjzGyzcbPbthyY5+kaiIstiIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgKS7NaDq/aTV4tJ0PAmzsyU+7HGOQ8SeQA8TstvsH2V1btp2qwuzujRceVlPriP3ImfxPcejQN192+zjsd2U9lXZ4YGmQxz57mg5WbI0d5M4Dc30A3pvIfMreGHc5cvLMJ+7z/2Lf0b9I7Oth1ztw6LUc5tPZj84Iz5Aj3yPE0PAcivZNY7SYmnQHGwwyJjRVNXGdq+2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" class="cin-operator" alt="Operator Zero">
+  </div>
   <canvas id="cin-canvas"></canvas>
   <div class="cin-fog-l"></div>
   <div class="cin-fog-r"></div>
@@ -418,9 +476,10 @@ footer .copy{font-size:11px;color:var(--g3)}
     <div class="cin-eyebrow">AI Tools &nbsp;·&nbsp; Real Numbers &nbsp;·&nbsp; No Face</div>
     <div class="cin-title">OPERATOR<span class="acc">ZERO</span></div>
     <div class="cin-tagline">// business plans built with AI — deployable today</div>
-    <div class="cin-cta-row">
-      <a href="https://operatorzerox.gumroad.com/l/risvbe" class="btn-primary" target="_blank" rel="noopener">GET THE PLAN — $147</a>
-      <div class="price-tag"><span class="old">$297</span> $147</div>
+    <div class="hero-cta-stack">
+      <button class="oz-primary-sample" onclick="ozOpenSampleModal()">OPEN SAMPLE PLAN →</button>
+      <p class="oz-cta-sub">See exactly what you receive before buying</p>
+      <a href="https://operatorzerox.gumroad.com/l/risvbe" class="oz-secondary-buy" target="_blank">GET THE PLAN — $147</a>
     </div>
   </div>
   <div class="cin-status"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span class="stxt">SYS ACTIVE</span></div>
@@ -473,7 +532,7 @@ footer .copy{font-size:11px;color:var(--g3)}
             <div class="p-price">$497</div>
             <div class="p-tag">Full Web Package</div>
             <div class="p-desc">Cinematic landing pages. Dark, fast, conversion-optimized. Built for operators who ship, not operators who meet.</div>
-            <div class="p-cta"><span class="p-cta-text">Access Module <span class="p-arr">→</span></span><span class="p-cs-badge">Coming Soon</span></div>
+            <button class="oz-waitlist-btn" onclick="ozOpenWaitlist(this)" data-module="Websites &amp; Funnels">JOIN WAITLIST →</button>
           </div>
         </div>
       </div>
@@ -490,7 +549,7 @@ footer .copy{font-size:11px;color:var(--g3)}
             <div class="p-price">$497</div>
             <div class="p-tag">Full Identity Package</div>
             <div class="p-desc">Complete visual systems. Logo, color palette, typography, brand guidelines. From zero to recognizable in one cycle.</div>
-            <div class="p-cta"><span class="p-cta-text">Access Module <span class="p-arr">→</span></span><span class="p-cs-badge">Coming Soon</span></div>
+            <button class="oz-waitlist-btn" onclick="ozOpenWaitlist(this)" data-module="AI Branding">JOIN WAITLIST →</button>
           </div>
         </div>
       </div>
@@ -507,7 +566,7 @@ footer .copy{font-size:11px;color:var(--g3)}
             <div class="p-price">$297</div>
             <div class="p-tag">Per Project</div>
             <div class="p-desc">Avatar videos, YouTube content, promo clips. HeyGen + AI voiceover + cinematic editing. Full production pipeline.</div>
-            <div class="p-cta"><span class="p-cta-text">Access Module <span class="p-arr">→</span></span><span class="p-cs-badge">Coming Soon</span></div>
+            <button class="oz-waitlist-btn" onclick="ozOpenWaitlist(this)" data-module="AI Video Production">JOIN WAITLIST →</button>
           </div>
         </div>
       </div>
@@ -524,7 +583,7 @@ footer .copy{font-size:11px;color:var(--g3)}
             <div class="p-price">$197<span style="font-size:10px">/mo</span></div>
             <div class="p-tag">Monthly Retainer</div>
             <div class="p-desc">Social media systems, not single posts. X strategy, SEO pipelines, content automation. We build content machines.</div>
-            <div class="p-cta"><span class="p-cta-text">Access Module <span class="p-arr">→</span></span><span class="p-cs-badge">Coming Soon</span></div>
+            <button class="oz-waitlist-btn" onclick="ozOpenWaitlist(this)" data-module="Content Engines">JOIN WAITLIST →</button>
           </div>
         </div>
       </div>
@@ -541,7 +600,7 @@ footer .copy{font-size:11px;color:var(--g3)}
             <div class="p-price">$997<span style="font-size:10px">+</span></div>
             <div class="p-tag">Custom Build</div>
             <div class="p-desc">Automated workflows, AI agents, CRM integration. We replace manual work with intelligent systems.</div>
-            <div class="p-cta"><span class="p-cta-text">Access Module <span class="p-arr">→</span></span><span class="p-cs-badge">Coming Soon</span></div>
+            <button class="oz-waitlist-btn" onclick="ozOpenWaitlist(this)" data-module="AI Automation">JOIN WAITLIST →</button>
           </div>
         </div>
       </div>
@@ -558,7 +617,7 @@ footer .copy{font-size:11px;color:var(--g3)}
             <div class="p-price">$97<span style="font-size:10px">+</span></div>
             <div class="p-tag">Per Document</div>
             <div class="p-desc">Contracts, proposals, reports, automated PDFs. Template systems that generate on demand.</div>
-            <div class="p-cta"><span class="p-cta-text">Access Module <span class="p-arr">→</span></span><span class="p-cs-badge">Coming Soon</span></div>
+            <button class="oz-waitlist-btn" onclick="ozOpenWaitlist(this)" data-module="Document Systems">JOIN WAITLIST →</button>
           </div>
         </div>
       </div>
@@ -575,7 +634,7 @@ footer .copy{font-size:11px;color:var(--g3)}
             <div class="p-price">CUSTOM</div>
             <div class="p-tag">Describe Your Project</div>
             <div class="p-desc">Don't see what you need? Describe your project. We analyze feasibility and build a custom solution.</div>
-            <div class="p-cta"><span class="p-cta-text">Access Module <span class="p-arr">→</span></span><span class="p-cs-badge">Coming Soon</span></div>
+            <button class="oz-waitlist-btn" onclick="ozOpenWaitlist(this)" data-module="Custom Operations">JOIN WAITLIST →</button>
           </div>
         </div>
       </div>
@@ -600,15 +659,47 @@ footer .copy{font-size:11px;color:var(--g3)}
 <section>
   <div class="section-label">// Deliverables</div>
   <h2>WHAT YOU <span class="accent">GET</span></h2>
-  <div class="deliverable-grid reveal">
-    <div class="deliverable-card"><div class="card-num">01</div><div class="card-title">Executive Summary</div><div class="card-desc">One-page overview for investors and decision-makers. Clear business concept, target market, and value proposition.</div></div>
-    <div class="deliverable-card"><div class="card-num">02</div><div class="card-title">Market Analysis</div><div class="card-desc">TAM/SAM/SOM breakdown. Competitor mapping. Real market size data — not guesswork.</div></div>
-    <div class="deliverable-card"><div class="card-num">03</div><div class="card-title">Business Model</div><div class="card-desc">Revenue streams, pricing logic, unit economics. How the money flows in — and where it goes.</div></div>
-    <div class="deliverable-card"><div class="card-num">04</div><div class="card-title">Go-To-Market</div><div class="card-desc">Launch strategy, acquisition channels, first-100-customers playbook. Tactical, not theoretical.</div></div>
-    <div class="deliverable-card"><div class="card-num">05</div><div class="card-title">Financial Projections</div><div class="card-desc">3-year P&L, cash flow model, break-even analysis. Assumptions documented, numbers defensible.</div></div>
-    <div class="deliverable-card"><div class="card-num">06</div><div class="card-title">Operations Plan</div><div class="card-desc">Team structure, key hires, processes, and tech stack. Built for the investor question: "how does this run?"</div></div>
-    <div class="deliverable-card"><div class="card-num">07</div><div class="card-title">Risk Analysis</div><div class="card-desc">Key risks identified and ranked. Mitigation strategies per risk. Shows investors you've done the hard thinking — not just the upside.</div></div>
-    <div class="deliverable-card"><div class="card-num">08</div><div class="card-title">Funding Strategy</div><div class="card-desc">Bootstrapped, angel, or VC — the right path mapped out. Use of funds breakdown. What $X buys you and when it runs out.</div></div>
+  <div class="deliverables-grid">
+    <div class="del-card" style="--hf-duration:3.8s;--hf-delay:0s;" onclick="ozOpenDelModal('del-01')">
+      <span class="del-num">01</span>
+      <h3 class="del-title">EXECUTIVE SUMMARY</h3>
+      <p class="del-text">One-page overview for investors and decision-makers. Clear business concept, target market, and value proposition.</p>
+    </div>
+    <div class="del-card" style="--hf-duration:4.2s;--hf-delay:0.5s;" onclick="ozOpenDelModal('del-02')">
+      <span class="del-num">02</span>
+      <h3 class="del-title">MARKET ANALYSIS</h3>
+      <p class="del-text">TAM/SAM/SOM breakdown. Competitor mapping. Real market size data — not guesswork.</p>
+    </div>
+    <div class="del-card" style="--hf-duration:3.6s;--hf-delay:0.9s;" onclick="ozOpenDelModal('del-03')">
+      <span class="del-num">03</span>
+      <h3 class="del-title">BUSINESS MODEL</h3>
+      <p class="del-text">Revenue streams, pricing logic, unit economics. How the money flows in — and where it goes.</p>
+    </div>
+    <div class="del-card" style="--hf-duration:4.4s;--hf-delay:0.3s;" onclick="ozOpenDelModal('del-04')">
+      <span class="del-num">04</span>
+      <h3 class="del-title">GO-TO-MARKET</h3>
+      <p class="del-text">Launch strategy, acquisition channels, first-100-customers playbook. Tactical, not theoretical.</p>
+    </div>
+    <div class="del-card" style="--hf-duration:3.9s;--hf-delay:0.7s;" onclick="ozOpenDelModal('del-05')">
+      <span class="del-num">05</span>
+      <h3 class="del-title">FINANCIAL PROJECTIONS</h3>
+      <p class="del-text">3-year P&L, cash flow model, break-even analysis. Assumptions documented, numbers defensible.</p>
+    </div>
+    <div class="del-card" style="--hf-duration:4.1s;--hf-delay:1.1s;" onclick="ozOpenDelModal('del-06')">
+      <span class="del-num">06</span>
+      <h3 class="del-title">OPERATIONS PLAN</h3>
+      <p class="del-text">Team structure, key hires, processes, and tech stack. Built for the investor question: "how does this run?"</p>
+    </div>
+    <div class="del-card" style="--hf-duration:3.7s;--hf-delay:0.4s;" onclick="ozOpenDelModal('del-07')">
+      <span class="del-num">07</span>
+      <h3 class="del-title">RISK ANALYSIS</h3>
+      <p class="del-text">Key risks identified and ranked. Mitigation strategies per risk. Shows investors you've done the hard thinking.</p>
+    </div>
+    <div class="del-card" style="--hf-duration:4.3s;--hf-delay:0.8s;" onclick="ozOpenDelModal('del-08')">
+      <span class="del-num">08</span>
+      <h3 class="del-title">FUNDING STRATEGY</h3>
+      <p class="del-text">Bootstrapped, angel, or VC — the right path mapped out. Use of funds breakdown.</p>
+    </div>
   </div>
 </section>
 </div>
@@ -876,7 +967,7 @@ function toggleVideo() {{
 
 // Flying Displays — modal system
 var OZ_SERVICES={'001':{name:'Business Plans',price:'$147',priceNote:'// ONE-TIME · DELIVERED 48H',desc:'AI-generated business plan delivered within 48 hours with intensive research and compression of information. Structured, verified, and formatted before delivery.',features:['Executive Summary','Market Analysis & TAM','Financial Projections (3-Year)','Go-To-Market Strategy','Competitive Positioning','PDF + DOCX Format'],cta:'Get The Plan — $147',ctaHref:'https://operatorzerox.gumroad.com/l/risvbe',ctaClass:'',note:'SECURE CHECKOUT VIA GUMROAD'},'002':{name:'Websites & Funnels',price:'$497',priceNote:'// FULL WEB PACKAGE',desc:'Cinematic landing pages built for operators who ship. Dark, fast, conversion-optimized. From zero to live in one cycle.',features:['Custom HTML/CSS build','Vercel deployment','Mobile optimized','SEO foundation','Conversion-focused layout','Brand-consistent design'],cta:'Send Project Brief →',ctaHref:'mailto:operatorzerox@gmail.com?subject=Websites%20%26%20Funnels',ctaClass:'soon',note:'RESPONSE WITHIN 48H · NO CALLS REQUIRED'},'003':{name:'AI Branding',price:'$497',priceNote:'// FULL IDENTITY PACKAGE',desc:'Complete visual systems. Logo, color palette, typography, brand guidelines. From zero to recognizable in one cycle.',features:['Brand strategy brief','Logo + visual identity','Color & typography system','Brand guidelines doc','Social media kit','Deliverables within 48h'],cta:'Send Project Brief →',ctaHref:'mailto:operatorzerox@gmail.com?subject=AI%20Branding',ctaClass:'soon',note:'RESPONSE WITHIN 48H · NO CALLS REQUIRED'},'004':{name:'AI Video Production',price:'$297',priceNote:'// PER PROJECT',desc:'Teaser videos, YouTube content, promo clips. HeyGen + AI voiceover + cinematic Veo b-roll. Full production pipeline from script to final export.',features:['Script + voiceover','AI avatar production','Cinematic b-roll (Veo)','Thumbnail design','YouTube SEO package','16:9 + vertical formats'],cta:'Send Project Brief →',ctaHref:'mailto:operatorzerox@gmail.com?subject=AI%20Video%20Production',ctaClass:'soon',note:'RESPONSE WITHIN 48H · NO CALLS REQUIRED'},'005':{name:'Content Engines',price:'$197',priceNote:'// PER MONTH · RETAINER',desc:'Social media systems, not single posts. X strategy, SEO pipelines, content automation. We build machines that produce content.',features:['Monthly content strategy','X + YouTube pipeline','AI-generated posts','SEO content system','Analytics review','Monthly deliverable package'],cta:'Send Project Brief →',ctaHref:'mailto:operatorzerox@gmail.com?subject=Content%20Engines',ctaClass:'soon',note:'RESPONSE WITHIN 48H · NO CALLS REQUIRED'},'006':{name:'AI Automation',price:'$997+',priceNote:'// CUSTOM BUILD',desc:'Automated workflows, AI agents, CRM integration. We replace manual work with intelligent systems. Built on Make.com, n8n, or custom stack.',features:['Workflow automation (Make/n8n)','AI agent deployment','CRM + tool integration','Email automation','Custom dashboard','Full documentation'],cta:'Send Project Brief →',ctaHref:'mailto:operatorzerox@gmail.com?subject=AI%20Automation',ctaClass:'soon',note:'RESPONSE WITHIN 48H · NO CALLS REQUIRED'},'007':{name:'Document Systems',price:'$97+',priceNote:'// PER DOCUMENT SET',desc:'Contracts, proposals, reports, automated PDFs. Template systems that generate on demand.',features:['Contract templates','Proposal frameworks','PDF automation','Fillable form systems','Legal document drafts','Delivered within 48h'],cta:'Send Project Brief →',ctaHref:'mailto:operatorzerox@gmail.com?subject=Document%20Systems',ctaClass:'soon',note:'RESPONSE WITHIN 48H · NO CALLS REQUIRED'},'008':{name:'Custom Operations',price:'CUSTOM',priceNote:'// DESCRIBE YOUR MISSION',desc:"Don't see what you need? Describe your project. We analyze feasibility and build a custom AI solution.",features:['Free scope assessment','Custom AI solution design','Async communication only','No retainer required','Delivered in sprints','Full documentation'],cta:'Describe Your Mission →',ctaHref:'mailto:operatorzerox@gmail.com?subject=Custom%20Operations',ctaClass:'soon',note:'RESPONSE WITHIN 48H · NO CALLS REQUIRED'}};
-function ozOpenModal(id){var s=OZ_SERVICES[id];if(!s)return;document.getElementById('ozModalId').textContent='// MODULE_'+id;document.getElementById('ozModalName').textContent=s.name;document.getElementById('ozModalPrice').textContent=s.price;document.getElementById('ozModalPriceNote').textContent=s.priceNote;document.getElementById('ozModalDesc').textContent=s.desc;var ul=document.getElementById('ozModalFeatures');ul.innerHTML='';s.features.forEach(function(f){var li=document.createElement('li');li.textContent=f;ul.appendChild(li);});var cta=document.getElementById('ozModalCta');cta.textContent=s.cta;cta.href=s.ctaHref;cta.className='oz-modal-cta'+(s.ctaClass?' '+s.ctaClass:'');document.getElementById('ozModalNote').textContent=s.note;document.getElementById('ozModalOverlay').classList.add('active');document.body.style.overflow='hidden';}
+function ozOpenModal(id){var s=OZ_SERVICES[id];if(!s)return;document.getElementById('ozModalId').textContent='// MODULE_'+id;document.getElementById('ozModalName').textContent=s.name;document.getElementById('ozModalPrice').textContent=s.price;document.getElementById('ozModalPriceNote').textContent=s.priceNote;document.getElementById('ozModalDesc').textContent=s.desc;var ul=document.getElementById('ozModalFeatures');ul.innerHTML='';s.features.forEach(function(f){var li=document.createElement('li');li.textContent=f;ul.appendChild(li);});var cta=document.getElementById('ozModalCta');cta.textContent=s.cta;cta.href=s.ctaHref;cta.className='oz-modal-cta'+(s.ctaClass?' '+s.ctaClass:'');document.getElementById('ozModalNote').textContent=s.note;document.getElementById('ozModalOverlay').classList.add('active');var modal=document.getElementById('ozModal');var overlay=document.getElementById('ozModalOverlay');overlay.onmousemove=function(e){var rect=modal.getBoundingClientRect();var cx=rect.left+rect.width/2;var cy=rect.top+rect.height/2;var dx=(e.clientX-cx)/(rect.width/2);var dy=(e.clientY-cy)/(rect.height/2);modal.style.transform='rotateX('+(-dy*6)+'deg) rotateY('+(dx*6)+'deg) translateY(0) scale(1)';};overlay.onmouseleave=function(){modal.style.transform='';};document.body.style.overflow='hidden';}
 function ozCloseModal(e){if(e.target===document.getElementById('ozModalOverlay'))ozCloseModalDirect();}
 function ozCloseModalDirect(){document.getElementById('ozModalOverlay').classList.remove('active');document.body.style.overflow='';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')ozCloseModalDirect();});
@@ -903,6 +994,346 @@ document.querySelector(".cin-title").addEventListener("mouseenter", function() {
   this.style.textShadow = "3px 0 #00E5CC,-3px 0 rgba(255,255,255,0.5)";
   setTimeout(() => this.style.textShadow = "", 90);
 });
+
+// === EFFEKT 2: Holographic Shader ===
+(function() {
+  var el = document.querySelector('.cin-operator-wrapper');
+  if (!el) return;
+  el.addEventListener('mousemove', function(e) {
+    var rect = el.getBoundingClientRect();
+    var x = ((e.clientX - rect.left) / rect.width) * 100;
+    var y = ((e.clientY - rect.top) / rect.height) * 100;
+    var angle = Math.atan2(
+      e.clientY - rect.top - rect.height / 2,
+      e.clientX - rect.left - rect.width / 2
+    ) * (180 / Math.PI);
+    el.style.setProperty('--mouse-x', x + '%');
+    el.style.setProperty('--mouse-y', y + '%');
+    el.style.setProperty('--holo-angle', (angle + 135) + 'deg');
+    el.style.setProperty('--holo-conic', (angle * 0.5) + 'deg');
+  });
+  el.addEventListener('mouseleave', function() {
+    el.style.setProperty('--mouse-x', '50%');
+    el.style.setProperty('--mouse-y', '50%');
+    el.style.setProperty('--holo-angle', '135deg');
+    el.style.setProperty('--holo-conic', '0deg');
+  });
+})();
+
+
+</script>
+<script>
+window.addEventListener('load', function() {
+  var titleEl = document.querySelector('.cin-title');
+  if (!titleEl) return;
+  var text = titleEl.textContent.trim();
+  titleEl.innerHTML = '';
+  text.split('').forEach(function(char, i) {
+    var span = document.createElement('span');
+    span.className = 'letter';
+    span.textContent = char === ' ' ? '\u00A0' : char;
+    span.style.cssText = '--tx:' + ((Math.random()-0.5)*80) + 'px;--ty:-' + (Math.random()*60+20) + 'px;transition-delay:' + (i*0.028) + 's';
+    titleEl.appendChild(span);
+  });
+  var hero = document.getElementById('cinematic-hero');
+  if (!hero) return;
+  new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      titleEl.classList.toggle('dissolving', !e.isIntersecting);
+      titleEl.classList.toggle('reassembling', e.isIntersecting);
+    });
+  }, {threshold: 0.15}).observe(hero);
+  titleEl.classList.add('reassembling');
+});
+</script>
+<div class="oz-waitlist-overlay" id="ozWaitlistOverlay">
+  <div class="oz-waitlist-box">
+    <button class="oz-waitlist-close" onclick="ozCloseWaitlist()">✕</button>
+    <h3>JOIN THE WAITLIST</h3>
+    <span class="oz-waitlist-module" id="ozWaitlistModule"></span>
+    <p>This module is in development. Drop your email — you'll be first when it deploys.</p>
+    <div id="ozWaitlistForm">
+      <input type="email" class="oz-waitlist-input" id="ozWaitlistEmail" placeholder="your@email.com" />
+      <button class="oz-waitlist-submit" onclick="ozSubmitWaitlist()">SECURE MY SPOT →</button>
+    </div>
+    <div class="oz-waitlist-success" id="ozWaitlistSuccess">
+      <p>// ACCESS QUEUED //<br><br>You're on the list. We'll contact you when this module goes live.</p>
+    </div>
+  </div>
+</div>
+<script>
+function ozOpenWaitlist(btn) {
+  var module = btn.getAttribute('data-module');
+  document.getElementById('ozWaitlistModule').textContent = '// ' + module.toUpperCase();
+  document.getElementById('ozWaitlistEmail').value = '';
+  document.getElementById('ozWaitlistForm').style.display = 'block';
+  document.getElementById('ozWaitlistSuccess').style.display = 'none';
+  document.getElementById('ozWaitlistOverlay').classList.add('active');
+}
+function ozCloseWaitlist() {
+  document.getElementById('ozWaitlistOverlay').classList.remove('active');
+}
+function ozSubmitWaitlist() {
+  var email = document.getElementById('ozWaitlistEmail').value;
+  if (!email || !email.includes('@')) {
+    document.getElementById('ozWaitlistEmail').style.borderColor = 'red';
+    return;
+  }
+  document.getElementById('ozWaitlistForm').style.display = 'none';
+  document.getElementById('ozWaitlistSuccess').style.display = 'block';
+}
+document.getElementById('ozWaitlistOverlay').addEventListener('click', function(e) {
+  if (e.target === this) ozCloseWaitlist();
+});
+</script>
+<div class="oz-sample-overlay" id="ozSampleOverlay">
+  <div class="oz-sample-box">
+    <button class="oz-sample-close" onclick="ozCloseSampleModal()">✕</button>
+    <div class="oz-modal-content" id="oz-modal-sample">
+      <div class="oz-modal-header">
+        <span class="oz-modal-tag">// SAMPLE DELIVERABLE</span>
+        <h2 class="oz-modal-title">FINANCIAL PROJECTIONS</h2>
+        <p class="oz-modal-subtitle">// LIVE PREVIEW — PAGE 05 OF A REAL OPERATOR ZERO BUSINESS PLAN</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px;">
+        <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-top:2px solid rgba(0,229,204,0.3);padding:20px 16px;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.15em;margin-bottom:10px;">YR 3 REVENUE</div>
+          <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;">$2.4M</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#00E5CC;">↑ 312% vs YR 1</div>
+        </div>
+        <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-top:2px solid rgba(0,229,204,0.3);padding:20px 16px;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.15em;margin-bottom:10px;">YR 3 GROSS MARGIN</div>
+          <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;">68%</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#00E5CC;">↑ from 54% YR 1</div>
+        </div>
+        <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-top:2px solid rgba(0,229,204,0.3);padding:20px 16px;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.15em;margin-bottom:10px;">BREAK-EVEN MONTH</div>
+          <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;">M+14</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#00E5CC;">$47K MRR threshold</div>
+        </div>
+        <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-top:2px solid rgba(0,229,204,0.3);padding:20px 16px;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.15em;margin-bottom:10px;">YR 3 NET INCOME</div>
+          <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;">$410K</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#00E5CC;">17.1% net margin</div>
+        </div>
+      </div>
+
+      <div style="background:#0a0a0a;border:1px solid #1a1a1a;padding:24px;margin-bottom:24px;">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.15em;margin-bottom:16px;">// 3-YEAR PROFIT &amp; LOSS — SUMMARY</div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px;">
+          <thead>
+            <tr style="border-bottom:1px solid #1e1e1e;">
+              <th style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.1em;padding:8px 12px;text-align:left;font-weight:400;width:38%;">LINE ITEM</th>
+              <th style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.1em;padding:8px 12px;text-align:right;font-weight:400;">YEAR 1</th>
+              <th style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.1em;padding:8px 12px;text-align:right;font-weight:400;">YEAR 2</th>
+              <th style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.1em;padding:8px 12px;text-align:right;font-weight:400;">YEAR 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="4" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#00E5CC;letter-spacing:.1em;padding:14px 12px 6px;border-bottom:none;">REVENUE</td></tr>
+            <tr style="border-bottom:1px solid #141414;">
+              <td style="padding:9px 12px;color:#777;font-family:'Share Tech Mono',monospace;font-size:11px;">SaaS Subscriptions</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$482,400</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$934,800</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$1,872,000</td>
+            </tr>
+            <tr style="border-bottom:1px solid #141414;">
+              <td style="padding:9px 12px;color:#777;font-family:'Share Tech Mono',monospace;font-size:11px;">Professional Services</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$96,000</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$168,000</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$312,000</td>
+            </tr>
+            <tr style="border-bottom:1px solid #141414;">
+              <td style="padding:9px 12px;color:#777;font-family:'Share Tech Mono',monospace;font-size:11px;">API Overage + Add-ons</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$7,200</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$52,800</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$216,000</td>
+            </tr>
+            <tr style="background:#111;border-top:1px solid #1e1e1e;border-bottom:1px solid #1e1e1e;">
+              <td style="padding:10px 12px;color:#fff;font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:700;">TOTAL REVENUE</td>
+              <td style="padding:10px 12px;text-align:right;color:#00E5CC;font-weight:600;">$585,600</td>
+              <td style="padding:10px 12px;text-align:right;color:#00E5CC;font-weight:600;">$1,155,600</td>
+              <td style="padding:10px 12px;text-align:right;color:#00E5CC;font-weight:600;">$2,400,000</td>
+            </tr>
+            <tr><td colspan="4" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#00E5CC;letter-spacing:.1em;padding:14px 12px 6px;border-bottom:none;">OPERATING EXPENSES</td></tr>
+            <tr style="border-bottom:1px solid #141414;">
+              <td style="padding:9px 12px;color:#777;font-family:'Share Tech Mono',monospace;font-size:11px;">Infrastructure + APIs</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$71,400</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$136,800</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$249,600</td>
+            </tr>
+            <tr style="border-bottom:1px solid #141414;">
+              <td style="padding:9px 12px;color:#777;font-family:'Share Tech Mono',monospace;font-size:11px;">Sales &amp; Marketing</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$175,000</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$231,000</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$480,000</td>
+            </tr>
+            <tr style="border-bottom:1px solid #141414;">
+              <td style="padding:9px 12px;color:#777;font-family:'Share Tech Mono',monospace;font-size:11px;">R&amp;D / Engineering</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$120,000</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$280,000</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$480,000</td>
+            </tr>
+            <tr style="border-bottom:1px solid #141414;">
+              <td style="padding:9px 12px;color:#777;font-family:'Share Tech Mono',monospace;font-size:11px;">G&amp;A + Founder Salaries</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$48,000</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$204,000</td>
+              <td style="padding:9px 12px;text-align:right;color:#aaa;">$264,000</td>
+            </tr>
+            <tr style="background:#111;border-top:1px solid #1e1e1e;">
+              <td style="padding:10px 12px;color:#fff;font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:700;">NET INCOME / (LOSS)</td>
+              <td style="padding:10px 12px;text-align:right;color:#ff6b6b;font-weight:600;">($25,600)</td>
+              <td style="padding:10px 12px;text-align:right;color:#00E5CC;font-weight:600;">$72,200</td>
+              <td style="padding:10px 12px;text-align:right;color:#00E5CC;font-weight:600;">$409,200</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+        <div style="background:#0a0a0a;border:1px solid #1a1a1a;border-left:2px solid rgba(0,229,204,0.3);padding:20px 24px;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.15em;margin-bottom:12px;">// KEY ASSUMPTIONS</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;">
+            <div><div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#444;margin-bottom:3px;">STARTING MRR</div><div style="font-size:13px;color:#ccc;font-weight:500;">$8,200</div></div>
+            <div><div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#444;margin-bottom:3px;">MONTHLY GROWTH</div><div style="font-size:13px;color:#ccc;font-weight:500;">8–12% YR 1</div></div>
+            <div><div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#444;margin-bottom:3px;">AVG CONTRACT VALUE</div><div style="font-size:13px;color:#ccc;font-weight:500;">$4,800/yr</div></div>
+            <div><div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#444;margin-bottom:3px;">CHURN RATE</div><div style="font-size:13px;color:#ccc;font-weight:500;">2.5%/mo</div></div>
+            <div><div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#444;margin-bottom:3px;">CAC PAYBACK</div><div style="font-size:13px;color:#ccc;font-weight:500;">8.4 months</div></div>
+            <div><div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#444;margin-bottom:3px;">TAX RATE</div><div style="font-size:13px;color:#ccc;font-weight:500;">21% federal</div></div>
+          </div>
+        </div>
+        <div style="background:#0a0a0a;border:1px solid #1a1a1a;border-left:2px solid rgba(0,229,204,0.3);padding:20px 24px;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#555;letter-spacing:.15em;margin-bottom:12px;">// BREAK-EVEN ANALYSIS</div>
+          <div style="font-size:28px;font-weight:700;color:#fff;margin-bottom:8px;">Month 14</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#555;line-height:1.7;">
+            Threshold: $47,200 MRR (~118 accounts)<br>
+            Fixed costs: $32,400/mo<br>
+            Formula: $32,400 ÷ 0.688 = $47,093<br>
+            Cash runway: 18+ months on $250K seed
+          </div>
+        </div>
+      </div>
+
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#333;text-align:center;padding:8px;border-top:1px solid #1a1a1a;">
+        // SAMPLE PAGE · ACTUAL DELIVERABLE FORMAT · PAGE 05 / 12 · CONFIDENTIAL — OPERATOR ZERO
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function ozOpenSampleModal() {
+  document.getElementById('ozSampleOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function ozCloseSampleModal() {
+  document.getElementById('ozSampleOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('ozSampleOverlay').addEventListener('click', function(e) {
+  if (e.target === this) ozCloseSampleModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') ozCloseSampleModal();
+});
+</script>
+<div id="ozDelOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9000;align-items:center;justify-content:center;" onclick="if(event.target===this)ozCloseDelModal()">
+  <div id="ozDelBox" style="background:#050505;border:1px solid rgba(0,229,204,0.25);border-radius:8px;width:720px;min-height:760px;padding:48px 40px;position:relative;box-shadow:0 0 80px rgba(0,229,204,0.08),inset 0 1px 0 rgba(0,229,204,0.12);animation:holoFloat 4s ease-in-out infinite;">
+    <button onclick="ozCloseDelModal()" style="position:absolute;top:16px;right:20px;background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:4px;color:#00E5CC;font-size:14px;width:28px;height:28px;cursor:pointer;font-family:monospace;display:flex;align-items:center;justify-content:center;">✕</button>
+    <div id="ozDelContent"></div>
+  </div>
+</div>
+<script>
+var ozDelData = {
+  'del-01': {
+    num: '01', title: 'EXECUTIVE SUMMARY',
+    tag: 'SECTION 01 · 1-2 PAGES',
+    desc: 'The single most-read page of any business plan. We write a tight, investor-ready summary that captures your business concept, target market, traction, and ask — in language that respects the reader\'s time.',
+    items: ['Business concept & value proposition','Target market & customer segment','Revenue model overview','Current traction or stage','Funding ask (if applicable)','Management team snapshot']
+  },
+  'del-02': {
+    num: '02', title: 'MARKET ANALYSIS',
+    tag: 'SECTION 02 · 3-5 PAGES',
+    desc: 'Real market size data — not guesswork. TAM/SAM/SOM breakdown with cited sources. Competitor mapping with honest positioning. Market trends that support your timing.',
+    items: ['TAM / SAM / SOM with cited data','Competitive landscape matrix','Customer persona profiles','Market trend analysis','Regulatory environment (if relevant)','Your positioning within the market']
+  },
+  'del-03': {
+    num: '03', title: 'BUSINESS MODEL',
+    tag: 'SECTION 03 · 2-3 PAGES',
+    desc: 'How the money flows in — and where it goes. Revenue streams, pricing logic, and unit economics presented clearly enough for any investor or bank to follow.',
+    items: ['Revenue stream breakdown','Pricing model & rationale','Unit economics (CAC, LTV, margins)','Gross margin structure','Recurring vs one-time revenue split','Scalability logic']
+  },
+  'del-04': {
+    num: '04', title: 'GO-TO-MARKET',
+    tag: 'SECTION 04 · 2-4 PAGES',
+    desc: 'The first-100-customers playbook. Acquisition channels ranked by priority and cost. Launch sequence with milestones. Tactical — not a generic marketing framework.',
+    items: ['Primary acquisition channels','Launch sequence & milestones','First 90 days playbook','Channel cost & conversion assumptions','Partnership & distribution strategy','Content & SEO plan (if applicable)']
+  },
+  'del-05': {
+    num: '05', title: 'FINANCIAL PROJECTIONS',
+    tag: 'SECTION 05 · 3-5 PAGES',
+    desc: '3-year P&L, cash flow model, and break-even analysis. All assumptions documented and defensible. Built to survive investor scrutiny — not just to look good.',
+    items: ['3-year Profit & Loss statement','Monthly cash flow model (YR 1)','Break-even analysis with formula','Revenue model assumptions','Headcount & cost build-up','Key financial ratios']
+  },
+  'del-06': {
+    num: '06', title: 'OPERATIONS PLAN',
+    tag: 'SECTION 06 · 2-3 PAGES',
+    desc: 'How the business actually runs. Team structure, key hires, tech stack, and core processes. Built to answer the investor question: "how does this scale?"',
+    items: ['Organizational structure','Key hire timeline & roles','Tech stack & infrastructure','Core operational processes','Key vendors & dependencies','Quality & delivery systems']
+  },
+  'del-07': {
+    num: '07', title: 'RISK ANALYSIS',
+    tag: 'SECTION 07 · 1-2 PAGES',
+    desc: 'Key risks identified, ranked, and paired with mitigation strategies. Shows investors you have done the hard thinking — not just the upside scenario.',
+    items: ['Risk identification matrix','Probability & impact ranking','Mitigation strategy per risk','Market & competitive risks','Operational & execution risks','Financial & funding risks']
+  },
+  'del-08': {
+    num: '08', title: 'FUNDING STRATEGY',
+    tag: 'SECTION 08 · 1-2 PAGES',
+    desc: 'Bootstrapped, angel, or VC — the right path mapped for your stage. Use of funds breakdown. What the capital buys and when it runs out.',
+    items: ['Funding stage recommendation','Use of funds breakdown','Investor profile & target criteria','Equity vs debt considerations','Milestone-based deployment plan','Exit or next-round trigger points']
+  }
+};
+
+function ozOpenDelModal(id) {
+  var d = ozDelData[id];
+  if (!d) return;
+  var items = d.items.map(function(i) {
+    return '<li style="font-family:\'Share Tech Mono\',monospace;font-size:13px;color:#bbb;padding:10px 0;border-bottom:1px solid #111;list-style:none;letter-spacing:.02em;">→  ' + i + '</li>';
+  }).join('');
+  document.getElementById('ozDelContent').innerHTML =
+    '<div style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#00E5CC;letter-spacing:.2em;margin-bottom:10px;opacity:0.7;">// ' + d.tag + '</div>' +
+    '<div style="font-family:Impact,sans-serif;font-size:36px;color:#fff;letter-spacing:.05em;margin-bottom:8px;line-height:1.1;">' + d.title + '</div>' +
+    '<div style="width:40px;height:2px;background:rgba(0,229,204,0.4);margin-bottom:24px;"></div>' +
+    '<p style="font-family:\'Share Tech Mono\',monospace;font-size:13px;color:#ccc;line-height:1.8;margin-bottom:28px;">' + d.desc + '</p>' +
+    '<div style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#555;letter-spacing:.2em;margin-bottom:14px;">// INCLUDED IN THIS SECTION</div>' +
+    '<ul style="padding:0;margin:0 0 32px;">' + items + '</ul>' +
+    '<button onclick="ozCloseDelModal()" style="width:100%;padding:16px;background:transparent;border:1px solid rgba(0,229,204,0.4);color:#00E5CC;font-family:\'Share Tech Mono\',monospace;font-size:12px;letter-spacing:.15em;cursor:pointer;transition:all 0.3s;" onmouseover="this.style.background=\'rgba(0,229,204,0.08)\'" onmouseout="this.style.background=\'transparent\'">CLOSE SECTION →</button>';
+  var overlay = document.getElementById('ozDelOverlay');
+  overlay.style.display = 'flex';
+  var box = document.getElementById('ozDelBox');
+  box.style.opacity = '0';
+  box.style.transform = 'translateY(30px) scale(0.95)';
+  box.style.transition = 'none';
+  setTimeout(function() {
+    box.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.23,1,0.32,1)';
+    box.style.opacity = '1';
+    box.style.transform = 'translateY(0) scale(1)';
+  }, 10);
+}
+
+function ozCloseDelModal() {
+  var overlay = document.getElementById('ozDelOverlay');
+  var box = document.getElementById('ozDelBox');
+  box.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+  box.style.opacity = '0';
+  box.style.transform = 'translateY(20px) scale(0.96)';
+  setTimeout(function() {
+    overlay.style.display = 'none';
+    box.style.opacity = '';
+    box.style.transform = '';
+  }, 260);
+}
 </script>
 <div class="oz-modal-overlay" id="ozModalOverlay" onclick="ozCloseModal(event)"><div class="oz-modal" id="ozModal"><div class="oz-modal-header"><span class="oz-modal-id" id="ozModalId">// MODULE_001</span><button class="oz-modal-close" onclick="ozCloseModalDirect()">✕</button></div><div class="oz-modal-body"><div class="oz-modal-name" id="ozModalName"></div><div class="oz-modal-price" id="ozModalPrice"></div><div class="oz-modal-price-note" id="ozModalPriceNote"></div><div class="oz-modal-divider"></div><p class="oz-modal-desc" id="ozModalDesc"></p><ul class="oz-modal-features" id="ozModalFeatures"></ul><a class="oz-modal-cta" id="ozModalCta" href="#" target="_blank" rel="noopener"></a><p class="oz-modal-note" id="ozModalNote"></p></div></div></div>
 </body>
